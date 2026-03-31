@@ -13,7 +13,7 @@ interface Dress {
 }
 
 async function getDress(id: string): Promise<Dress | null> {
-  const res = await fetch(`http://localhost:3000/dresses/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/dresses/${id}`, {
     cache: "no-store",
   });
   if (!res.ok) return null;

@@ -56,17 +56,20 @@ export default function ProfilePage() {
     setLoading(true);
     try {
       // Dùng fetch trực tiếp, không qua apiFetch
-      const res = await fetch("http://localhost:3000/auth/change-password", {
-        method: "POST",
-        credentials: "include", // Vẫn gửi cookie
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/change-password`,
+        {
+          method: "POST",
+          credentials: "include", // Vẫn gửi cookie
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            currentPassword: passwordForm.currentPassword,
+            newPassword: passwordForm.newPassword,
+          }),
         },
-        body: JSON.stringify({
-          currentPassword: passwordForm.currentPassword,
-          newPassword: passwordForm.newPassword,
-        }),
-      });
+      );
 
       const data = await res.json();
 

@@ -32,10 +32,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // ==================== REFRESH TOKEN ====================
   const refreshToken = useCallback(async (): Promise<boolean> => {
     try {
-      const res = await fetch("http://localhost:3000/auth/refresh", {
-        method: "POST",
-        credentials: "include", // Gửi cookie chứa refresh token
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/refresh`,
+        {
+          method: "POST",
+          credentials: "include", // Gửi cookie chứa refresh token
+        },
+      );
 
       if (res.ok) {
         console.log("✅ Token refreshed");
@@ -53,9 +56,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // ==================== FETCH USER ====================
   const fetchUser = useCallback(async () => {
     try {
-      const res = await fetch("http://localhost:3000/auth/profile", {
-        credentials: "include",
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/profile`,
+        {
+          credentials: "include",
+        },
+      );
 
       if (res.ok) {
         const userData = await res.json();
@@ -67,9 +73,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
         if (refreshed) {
           // Refresh thành công - thử lại fetch user
-          const retryRes = await fetch("http://localhost:3000/auth/profile", {
-            credentials: "include",
-          });
+          const retryRes = await fetch(
+            `${process.env.NEXT_PUBLIC_API_URL}/auth/profile`,
+            {
+              credentials: "include",
+            },
+          );
           if (retryRes.ok) {
             const userData = await retryRes.json();
             setUser(userData);
@@ -117,7 +126,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = async (email: string, password: string) => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:3000/auth/login", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -143,7 +152,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // ==================== LOGOUT ====================
   const logout = useCallback(async () => {
     try {
-      await fetch("http://localhost:3000/auth/logout", {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });

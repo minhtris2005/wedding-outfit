@@ -1,5 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-//hello
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 let isRefreshing = false;
 let failedQueue: { resolve: () => void; reject: (error: any) => void }[] = [];
 

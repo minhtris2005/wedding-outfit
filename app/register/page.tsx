@@ -15,13 +15,16 @@ export default function RegisterPage() {
     try {
       setLoading(true);
 
-      const res = await fetch("http://localhost:3000/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/register`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, email, password }),
         },
-        body: JSON.stringify({ name, email, password }),
-      });
+      );
 
       const data = await res.json();
 
@@ -41,17 +44,13 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-neutral-100 px-4">
-      
       <div className="w-full max-w-md bg-white rounded-2xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.25)] p-10 border border-black/10">
-        
         {/* Header */}
         <div className="text-center mb-10">
           <h1 className="text-3xl font-semibold tracking-tight">
             Create Account
           </h1>
-          <p className="text-sm text-neutral-500 mt-2">
-            Join us today
-          </p>
+          <p className="text-sm text-neutral-500 mt-2">Join us today</p>
         </div>
 
         {/* Name */}
@@ -109,10 +108,7 @@ export default function RegisterPage() {
         {/* Login redirect */}
         <p className="text-center text-sm text-neutral-500">
           Already have an account?{" "}
-          <a
-            href="/login"
-            className="font-medium text-black hover:underline"
-          >
+          <a href="/login" className="font-medium text-black hover:underline">
             Sign in
           </a>
         </p>
