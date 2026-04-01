@@ -5,7 +5,6 @@ import HeroSection from "@/components/home/HeroSection";
 import RentalProcess from "@/components/home/RentalProcess";
 import FeaturedDresses from "@/components/home/FeaturedDresses";
 import LatestDresses from "@/components/home/LatestDresses";
-import CTASection from "@/components/home/CTASection";
 import { LoadingSpinner } from "@/components/common/LoadingSpinner";
 
 export default async function HomePage() {
@@ -37,7 +36,7 @@ export default async function HomePage() {
           <div className="w-full px-6 md:px-12 lg:px-20">
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16 border-b border-neutral-200 pb-8">
               <div>
-                <p className="text-[10px] tracking-[0.5em] uppercase text-neutral-400 mb-4 font-medium">
+                <p className="text-[15px] tracking-[0.5em] uppercase text-neutral-400 mb-4 font-medium">
                   Bộ sưu tập
                 </p>
                 <h2 className="font-cormorant text-4xl md:text-6xl font-light text-black uppercase tracking-tight">
@@ -46,7 +45,7 @@ export default async function HomePage() {
               </div>
               <a
                 href="/collections"
-                className="text-xs tracking-[0.3em] uppercase border-b border-black pb-2 hover:opacity-50 transition-all font-medium"
+                className="text-xs tracking-[0.3em] uppercase border-b border-black pb-2 opacity-50 hover:opacity-100 transition-all font-medium"
               >
                 Khám phá tất cả
               </a>
@@ -69,7 +68,7 @@ export default async function HomePage() {
         <section className="py-24 w-full bg-white">
           <div className="w-full px-6 md:px-12 lg:px-20">
             <div className="text-center mb-20">
-              <p className="text-[10px] tracking-[0.5em] uppercase text-neutral-400 mb-4">
+              <p className="text-[15px] tracking-[0.5em] uppercase text-neutral-400 mb-4">
                 Cập nhật mới
               </p>
               <h2 className="font-cormorant text-4xl md:text-5xl font-light text-black uppercase">
@@ -90,9 +89,6 @@ export default async function HomePage() {
             </Suspense>
           </div>
         </section>
-
-        {/* 5. CTA Section */}
-        <CTASection />
       </main>
 
       <Footer />

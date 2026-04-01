@@ -3,7 +3,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const menuItems = [
-  { name: "Dashboard", href: "/admin", icon: "🏠" },
+  { name: "Trang chủ", href: "/", icon: "🏠" },
+  { name: "Dashboard", href: "/admin", icon: "📊" },
   { name: "Quản lý sản phẩm", href: "/admin/dresses", icon: "👗" },
   { name: "Đơn thuê", href: "/admin/rentals", icon: "📦" },
   { name: "Lịch thử", href: "/admin/fittings", icon: "📅" },

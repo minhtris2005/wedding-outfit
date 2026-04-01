@@ -46,14 +46,14 @@ export default function Header() {
           href="/"
           className="text-xl font-bold hover:opacity-80 transition"
         >
-          Dress Rental
+          Tris Amour
         </Link>
 
         <nav className="flex gap-2">
           {navItem("/", "Trang chủ")}
           {navItem("/collections", "Bộ sưu tập")}
 
-          {user && (
+          {user && user.role !== "admin" && (
             <>
               {navItem("/rentals", "Đơn thuê")}
               {navItem("/fittings", "Lịch thử")}
@@ -117,23 +117,27 @@ export default function Header() {
                         Thông tin cá nhân
                       </Link>
 
-                      <Link
-                        href="/rentals"
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition"
-                        onClick={() => setShowUserMenu(false)}
-                      >
-                        <span className="w-4 h-4">📦</span>
-                        Đơn thuê của tôi
-                      </Link>
+                      {user.role !== "admin" && (
+                        <>
+                          <Link
+                            href="/rentals"
+                            className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition"
+                            onClick={() => setShowUserMenu(false)}
+                          >
+                            <span className="w-4 h-4">📦</span>
+                            Đơn thuê của tôi
+                          </Link>
 
-                      <Link
-                        href="/fittings"
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition"
-                        onClick={() => setShowUserMenu(false)}
-                      >
-                        <span className="w-4 h-4">📅</span>
-                        Lịch thử đồ
-                      </Link>
+                          <Link
+                            href="/fittings"
+                            className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition"
+                            onClick={() => setShowUserMenu(false)}
+                          >
+                            <span className="w-4 h-4">📅</span>
+                            Lịch thử đồ
+                          </Link>
+                        </>
+                      )}
 
                       {user.role === "admin" && (
                         <Link
